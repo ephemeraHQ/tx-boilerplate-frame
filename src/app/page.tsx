@@ -4,9 +4,15 @@ import { Metadata } from "next";
 const frameMetadata = getFrameMetadata({
   accepts: { xmtp: "2024-02-09" },
   isOpenFrame: true,
-  buttons: [{ label: "Make transaction" }],
+  buttons: [
+    {
+      label: "Make transaction",
+      action: "tx",
+      target: `${process.env.NEXT_PUBLIC_BASE_URL}/api/transaction`,
+      postUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/api/transaction-success`,
+    },
+  ],
   image: `${process.env.NEXT_PUBLIC_BASE_URL}/api/og?transaction=null`,
-  post_url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/frame?id=1`,
 });
 
 export const metadata: Metadata = {
