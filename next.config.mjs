@@ -6,7 +6,7 @@ const nextConfig = {
     return [
       {
         source: "/transactionFrames",
-        destination: "https://www.xmtp.org",
+        destination: "https://www.xmtp.org/docs/tutorials/transaction-frames",
         permanent: false,
       },
     ];
