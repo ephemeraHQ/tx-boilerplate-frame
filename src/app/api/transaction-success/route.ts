@@ -1,9 +1,22 @@
-import { confirmationFrameHtml } from "@/app/page";
-import { getFrameHtmlResponse } from "@coinbase/onchainkit";
+import { getFrameHtmlResponse } from "@coinbase/onchainkit/frame";
 import { getXmtpFrameMessage } from "@coinbase/onchainkit/xmtp";
 import { NextRequest, NextResponse } from "next/server";
 
-// TX successful response frame with redirect to docs
+const confirmationFrameHtml = getFrameHtmlResponse({
+  accepts: {
+    xmtp: "2024-02-09",
+  },
+  isOpenFrame: true,
+  buttons: [
+    {
+      action: "post_redirect",
+      label: "Learn more about transaction frames",
+    },
+  ],
+  postUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/api/end`,
+  image: `${process.env.NEXT_PUBLIC_BASE_URL}/api/og?transaction=0.0000032`,
+});
+
 async function getResponse(req: NextRequest): Promise<NextResponse> {
   const body = await req.json();
   const { isValid } = await getXmtpFrameMessage(body);
