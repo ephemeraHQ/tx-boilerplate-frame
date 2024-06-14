@@ -8,7 +8,7 @@ const frameMetadata = getFrameMetadata({
     {
       label: "Toggle Network",
       action: "post",
-      target: `${process.env.NEXT_PUBLIC_BASE_URL}/api/toggle`,
+      target: `${process.env.NEXT_PUBLIC_BASE_URL}/api/toggle?network=11155111`,
     },
     {
       label: "Submit transaction",
@@ -17,7 +17,6 @@ const frameMetadata = getFrameMetadata({
       postUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/api/transaction-success`,
     },
   ],
-  state: { network: "11155111" },
   image: `${process.env.NEXT_PUBLIC_BASE_URL}/api/og?network=11155111`,
 });
 
