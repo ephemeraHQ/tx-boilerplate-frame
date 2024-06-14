@@ -4,10 +4,8 @@ import { ImageResponse } from "next/og";
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const transactionParam = searchParams.has("transaction");
-    const transaction = transactionParam
-      ? Number(searchParams.get("transaction"))
-      : null;
+    const transaction = Boolean(searchParams.get("transaction"));
+    const network = searchParams.get("network");
 
     return new ImageResponse(
       (
@@ -16,15 +14,11 @@ export async function GET(request: Request) {
             <div tw="flex flex-col md:flex-row w-full py-12 px-4 md:items-center justify-between p-8">
               <h2 tw="flex flex-col text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 text-left">
                 <span>
-                  {!transaction
-                    ? "Try Open Frames Transactions"
-                    : "Transaction Successful!"}
-                </span>
-                <span tw="text-indigo-600">
                   {transaction
-                    ? `Your transaction of ${transaction} ETH is complete.`
-                    : `Click to make a blank transaction.`}
+                    ? "Transaction Successful!"
+                    : "Try Open Frames Transactions"}
                 </span>
+                <span>Network: {network}</span>
               </h2>
             </div>
           </div>

@@ -1,18 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { parseEther } from "viem";
 import type { FrameTransactionResponse } from "@coinbase/onchainkit/frame";
-import { getXmtpFrameMessage } from "@coinbase/onchainkit/xmtp";
 
 async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
-  const body = await req.json();
-  const { isValid } = await getXmtpFrameMessage(body);
-  if (!isValid) {
-    return new NextResponse("Message not valid", { status: 500 });
-  }
+  const { searchParams } = new URL(req.url);
+  const network = Boolean(searchParams.get("network"));
+
 
   const txData: FrameTransactionResponse = {
-    // Sepolia
-    chainId: `eip155:11155111`,
+    chainId: `eip155:${network}`,
     method: "eth_sendTransaction",
     params: {
       abi: [],

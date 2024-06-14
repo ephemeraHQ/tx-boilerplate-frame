@@ -4,4 +4,4 @@ This repo provides the code for the [example Open Frames Tx Frame.](https://tx-b
 
 Use this example Frame to test support for transaction Frames in your app.
 
-This example Frame uses the Sepolia network to perform an empty transaction on a specified network.
+This example Frame performs an empty transaction on a specified network.

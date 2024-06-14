@@ -1,5 +1,4 @@
 import { getFrameHtmlResponse } from "@coinbase/onchainkit/frame";
-import { getXmtpFrameMessage } from "@coinbase/onchainkit/xmtp";
 import { NextRequest, NextResponse } from "next/server";
 
 const confirmationFrameHtml = getFrameHtmlResponse({
@@ -15,17 +14,10 @@ const confirmationFrameHtml = getFrameHtmlResponse({
     },
   ],
   postUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/api/end`,
-  image: `${process.env.NEXT_PUBLIC_BASE_URL}/api/og?transaction`,
+  image: `${process.env.NEXT_PUBLIC_BASE_URL}/api/og?transaction=true`,
 });
 
 async function getResponse(req: NextRequest): Promise<NextResponse> {
-  const body = await req.json();
-  const { isValid } = await getXmtpFrameMessage(body);
-
-  if (!isValid) {
-    return new NextResponse("Message not valid", { status: 500 });
-  }
-
   return new NextResponse(confirmationFrameHtml);
 }
 export async function POST(req: NextRequest): Promise<Response> {
