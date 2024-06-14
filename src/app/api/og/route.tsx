@@ -1,11 +1,15 @@
 import { ImageResponse } from "next/og";
+import { networkToggle } from "../toggle/route";
 
 // The dynamically generated frame image
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const transaction = Boolean(searchParams.get("transaction"));
-    const network = searchParams.get("network");
+    const network = Number(searchParams.get("network"));
+    const networkIndex = networkToggle.findIndex(
+      (mapping) => mapping.chainId === network
+    );
 
     return new ImageResponse(
       (
@@ -18,7 +22,7 @@ export async function GET(request: Request) {
                     ? "Transaction Successful!"
                     : "Try Open Frames Transactions"}
                 </span>
-                <span>Network: {network}</span>
+                <span>Network: {networkToggle.at(networkIndex)?.network}</span>
               </h2>
             </div>
           </div>

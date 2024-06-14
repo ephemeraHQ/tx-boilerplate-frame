@@ -7,7 +7,7 @@ const frameMetadata = getFrameMetadata({
   buttons: [
     {
       label: "Toggle Network",
-      action: "post_redirect",
+      action: "post",
       target: `${process.env.NEXT_PUBLIC_BASE_URL}/api/toggle`,
     },
     {

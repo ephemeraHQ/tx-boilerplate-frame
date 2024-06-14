@@ -1,7 +1,7 @@
 import { getFrameHtmlResponse } from "@coinbase/onchainkit/frame";
 import { NextRequest, NextResponse } from "next/server";
 
-const networkToggle: { chainId: number, network: string }[] = [
+export const networkToggle: { chainId: number, network: string }[] = [
     { "chainId": 1, "network": "Ethereum Mainnet" },
     { "chainId": 11155111, "network": "Sepolia Testnet" },
     { "chainId": 10, "network": "Optimism Mainnet" },
