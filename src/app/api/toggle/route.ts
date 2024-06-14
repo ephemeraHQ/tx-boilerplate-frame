@@ -15,6 +15,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     const currentChainId = networkToggle.at(networkIndex)?.chainId
     console.log(`Current chainID ${currentChainId}`)
     const newNetwork = toggleNetwork(networkIndex);
+    console.log(`New network ${newNetwork.chainId}`)
 
     const frameMetadata = getFrameHtmlResponse({
         accepts: { xmtp: "2024-02-09", lens: "1.0.0" },

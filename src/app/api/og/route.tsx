@@ -10,6 +10,7 @@ export async function GET(request: Request) {
     const networkIndex = networkToggle.findIndex(
       (mapping) => mapping.chainId === network
     );
+    console.log(`Rendering OG with network ${network}`);
 
     return new ImageResponse(
       (
