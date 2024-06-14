@@ -3,7 +3,7 @@ import type { FrameTransactionResponse } from "@coinbase/onchainkit/frame";
 
 async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
   const { searchParams } = new URL(req.url);
-  const network = Boolean(searchParams.get("network"));
+  const network = Number(searchParams.get("network"));
 
 
   const txData: FrameTransactionResponse = {
