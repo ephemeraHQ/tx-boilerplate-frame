@@ -16,8 +16,8 @@ async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
     method: "eth_sendTransaction",
     params: {
       abi: [],
-      to: "0x194c31cAe1418D5256E8c58e0d08Aee1046C6Ed0",
-      value: parseEther("0.0000032", "wei").toString(), // 0.0000032 ETH, ~1 cent
+      to: "0x0000000000000000000000000000000000000000",
+      value: "0"
     },
   };
   return NextResponse.json(txData);

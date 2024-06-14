@@ -23,7 +23,7 @@ export async function GET(request: Request) {
                 <span tw="text-indigo-600">
                   {transaction
                     ? `Your transaction of ${transaction} ETH is complete.`
-                    : `Click to make a transaction (0.0000032 ETH).`}
+                    : `Click to make a blank transaction.`}
                 </span>
               </h2>
             </div>

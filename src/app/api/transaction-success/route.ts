@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 const confirmationFrameHtml = getFrameHtmlResponse({
   accepts: {
     xmtp: "2024-02-09",
+    lens: "1.0.0",
   },
   isOpenFrame: true,
   buttons: [
@@ -14,7 +15,7 @@ const confirmationFrameHtml = getFrameHtmlResponse({
     },
   ],
   postUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/api/end`,
-  image: `${process.env.NEXT_PUBLIC_BASE_URL}/api/og?transaction=0.0000032`,
+  image: `${process.env.NEXT_PUBLIC_BASE_URL}/api/og?transaction`,
 });
 
 async function getResponse(req: NextRequest): Promise<NextResponse> {
