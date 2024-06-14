@@ -22,7 +22,24 @@ export async function GET(request: Request) {
                     ? "Transaction Successful!"
                     : "Try Open Frames Transactions"}
                 </span>
-                <span>Network: {networkToggle.at(networkIndex)?.network}</span>
+                <span>
+                  Selected Network: {networkToggle[networkIndex]?.network}
+                </span>
+                <span>Options:</span>
+                <ul tw="list-none mt-4">
+                  {networkToggle.map((network, index) => (
+                    <li
+                      key={network.chainId}
+                      tw={`text-lg ${
+                        index === networkIndex
+                          ? "text-red-500"
+                          : "text-gray-900"
+                      }`}
+                    >
+                      {network.network}
+                    </li>
+                  ))}
+                </ul>
               </h2>
             </div>
           </div>
