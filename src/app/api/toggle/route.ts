@@ -12,6 +12,8 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     const { searchParams } = new URL(req.url);
     const network = Number(searchParams.get("network"));
     const networkIndex = networkToggle.findIndex(mapping => mapping.chainId === network)
+    const currentChainId = networkToggle.at(networkIndex)?.chainId
+    console.log(`Current chainID ${currentChainId}`)
     const newNetwork = toggleNetwork(networkIndex);
 
     const frameMetadata = getFrameHtmlResponse({
@@ -21,7 +23,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
             {
                 label: "Toggle Network",
                 action: "post",
-                target: `${process.env.NEXT_PUBLIC_BASE_URL}/api/toggle?network=${networkToggle.at(networkIndex)?.chainId}`,
+                target: `${process.env.NEXT_PUBLIC_BASE_URL}/api/toggle?network=${currentChainId}`,
             },
             {
                 label: "Submit transaction",
