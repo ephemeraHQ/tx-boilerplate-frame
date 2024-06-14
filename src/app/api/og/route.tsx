@@ -27,17 +27,8 @@ export async function GET(request: Request) {
                 </span>
                 <span>Options:</span>
                 <ul tw="list-none mt-4">
-                  {networkToggle.map((network, index) => (
-                    <li
-                      key={network.chainId}
-                      tw={`text-lg ${
-                        index === networkIndex
-                          ? "text-red-500"
-                          : "text-gray-900"
-                      }`}
-                    >
-                      {network.network}
-                    </li>
+                  {networkToggle.map((network) => (
+                    <span key={network.chainId}>{network.network}</span>
                   ))}
                 </ul>
               </h2>

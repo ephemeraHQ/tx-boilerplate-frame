@@ -3,8 +3,8 @@ import { getFrameHtmlResponse } from "@coinbase/onchainkit/frame";
 import { NextRequest, NextResponse } from "next/server";
 
 function toggleNetwork(networkIndex: number) {
-    networkIndex = (networkIndex + 1) % networkToggle.length;
-    return networkToggle[networkIndex];
+    const newNetworkIndex = (networkIndex + 1) % networkToggle.length;
+    return networkToggle[newNetworkIndex];
 }
 
 
@@ -12,7 +12,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     const { searchParams } = new URL(req.url);
     const network = Number(searchParams.get("network"));
     const networkIndex = networkToggle.findIndex(mapping => mapping.chainId === network)
-    const currentNetwork = toggleNetwork(networkIndex);
+    const newNetwork = toggleNetwork(networkIndex);
 
     const frameMetadata = getFrameHtmlResponse({
         accepts: { xmtp: "2024-02-09", lens: "1.0.0" },
@@ -21,17 +21,17 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
             {
                 label: "Toggle Network",
                 action: "post",
-                target: `${process.env.NEXT_PUBLIC_BASE_URL}/api/toggle`,
+                target: `${process.env.NEXT_PUBLIC_BASE_URL}/api/toggle?network=${networkToggle.at(networkIndex)?.chainId}`,
             },
             {
                 label: "Submit transaction",
                 action: "tx",
-                target: `${process.env.NEXT_PUBLIC_BASE_URL}/api/transaction?network=${currentNetwork.chainId}`,
+                target: `${process.env.NEXT_PUBLIC_BASE_URL}/api/transaction?network=${newNetwork.chainId}`,
                 postUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/api/transaction-success`,
             },
         ],
-        state: { network: currentNetwork.chainId.toString() },
-        image: `${process.env.NEXT_PUBLIC_BASE_URL}/api/og?network=${currentNetwork.chainId}`,
+        state: { network: newNetwork.chainId.toString() },
+        image: `${process.env.NEXT_PUBLIC_BASE_URL}/api/og?network=${newNetwork.chainId}`,
     });
     return new NextResponse(frameMetadata);
 }
