@@ -24,7 +24,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
             {
                 label: "Toggle Network",
                 action: "post",
-                target: `${process.env.NEXT_PUBLIC_BASE_URL}/api/toggle?network=${currentChainId}`,
+                target: `${process.env.NEXT_PUBLIC_BASE_URL}/api/toggle?network=${newNetwork.chainId}`,
             },
             {
                 label: "Submit transaction",
@@ -34,7 +34,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
             },
         ],
         state: { network: newNetwork.chainId.toString() },
-        image: `${process.env.NEXT_PUBLIC_BASE_URL}/api/og?network=${newNetwork.chainId}`,
+        image: `${process.env.NEXT_PUBLIC_BASE_URL}/api/og?network=${currentChainId}`,
     });
     return new NextResponse(frameMetadata);
 }

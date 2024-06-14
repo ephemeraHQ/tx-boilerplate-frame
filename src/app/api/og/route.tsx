@@ -5,8 +5,8 @@ import { ImageResponse } from "next/og";
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const transaction = Boolean(searchParams.get("transaction"));
     const network = Number(searchParams.get("network"));
+    const transaction = Boolean(searchParams.get("transaction"));
     const networkIndex = networkToggle.findIndex(
       (mapping) => mapping.chainId === network
     );
