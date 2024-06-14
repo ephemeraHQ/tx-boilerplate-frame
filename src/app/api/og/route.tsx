@@ -1,5 +1,5 @@
+import { networkToggle } from "@/utils/networkToggle";
 import { ImageResponse } from "next/og";
-import { networkToggle } from "../toggle/route";
 
 // The dynamically generated frame image
 export async function GET(request: Request) {
