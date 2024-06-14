@@ -29,7 +29,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
             {
                 label: "Submit transaction",
                 action: "tx",
-                target: `${process.env.NEXT_PUBLIC_BASE_URL}/api/transaction?network=${newNetwork.chainId}`,
+                target: `${process.env.NEXT_PUBLIC_BASE_URL}/api/transaction?network=${currentChainId}`,
                 postUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/api/transaction-success`,
             },
         ],
