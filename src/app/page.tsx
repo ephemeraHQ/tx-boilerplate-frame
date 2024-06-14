@@ -8,16 +8,16 @@ const frameMetadata = getFrameMetadata({
     {
       label: "Toggle Network",
       action: "post",
-      target: `${process.env.NEXT_PUBLIC_BASE_URL}/api/toggle?network=11155111`,
+      target: `${process.env.NEXT_PUBLIC_BASE_URL}/api/toggle?network=137`,
     },
     {
       label: "Submit transaction",
       action: "tx",
-      target: `${process.env.NEXT_PUBLIC_BASE_URL}/api/transaction?network=11155111`,
+      target: `${process.env.NEXT_PUBLIC_BASE_URL}/api/transaction?network=137`,
       postUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/api/transaction-success`,
     },
   ],
-  image: `${process.env.NEXT_PUBLIC_BASE_URL}/api/og?network=11155111`,
+  image: `${process.env.NEXT_PUBLIC_BASE_URL}/api/og?network=137`,
 });
 
 export const metadata: Metadata = {
