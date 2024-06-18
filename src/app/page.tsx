@@ -23,6 +23,11 @@ const frameMetadata = getFrameMetadata({
 export const metadata: Metadata = {
   title: "Transaction Frame",
   description: "A frame to demonstrate transactions",
+  openGraph: {
+    title: "gm",
+    description: "A page having a frame meta tag for gm",
+    images: `${process.env.NEXT_PUBLIC_BASE_URL}/api/og?network=137`,
+  },
   other: {
     ...frameMetadata,
   },
