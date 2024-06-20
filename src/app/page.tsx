@@ -30,6 +30,15 @@ export const metadata: Metadata = {
   },
   other: {
     ...frameMetadata,
+    "of:input:text": "Enter @username",
+    "of:accepts:anonymous": "true",
+    "of:button:1": "Toggle Network",
+    "of:button:1:action": "post",
+    "of:button:1:target": `${process.env.NEXT_PUBLIC_BASE_URL}/api/toggle?network=137`,
+    "of:button:2": "Submit transaction",
+    "of:button:2:action": "tx",
+    "of:button:2:target": `${process.env.NEXT_PUBLIC_BASE_URL}/api/transaction?network=137`,
+    "of:button:2:post_url": `${process.env.NEXT_PUBLIC_BASE_URL}/api/transaction-success`,
   },
 };
 
